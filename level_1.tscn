@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://5t7wdymvtp4n" path="res://barrier.tscn" id="6_5hph3"]
 [ext_resource type="PackedScene" uid="uid://bcdq6t36vkuij" path="res://Arch.tscn" id="7_j7kpp"]
 [ext_resource type="Script" uid="uid://cxlf4g67yeool" path="res://coin_counter.gd" id="10_gyffv"]
+[ext_resource type="Script" uid="uid://dwnl2bbiirga0" path="res://timer.gd" id="11_1pe0h"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ilcil"]
 size = Vector3(10, 0.5, 10)
@@ -17,9 +18,15 @@ size = Vector3(10, 0.5, 10)
 [sub_resource type="BoxShape3D" id="BoxShape3D_3hls8"]
 size = Vector3(10, 0.5, 10)
 
+[sub_resource type="LabelSettings" id="LabelSettings_gyffv"]
+
 [node name="Level1" type="Node3D" unique_id=872565340]
 script = ExtResource("1_bjebc")
 possible_chunks = Array[PackedScene]([ExtResource("2_5rr72")])
+
+[node name="Timer" type="Timer" parent="." unique_id=932363926]
+autostart = true
+script = ExtResource("11_1pe0h")
 
 [node name="Floor" type="StaticBody3D" parent="." unique_id=706325752]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.253564, 0)
@@ -31,12 +38,12 @@ mesh = SubResource("BoxMesh_ilcil")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=773643472]
 shape = SubResource("BoxShape3D_3hls8")
 
+[node name="Chunk1Spawn" type="Marker3D" parent="Floor" unique_id=854238775]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.253564, 25)
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=746119734]
 transform = Transform3D(1, 0, 0, 0, -0.5186091, 0.8550115, 0, -0.8550115, -0.5186091, 0, 8.982597, -1.4138145)
 shadow_enabled = true
-
-[node name="Chunk1Spawn" type="Marker3D" parent="." unique_id=854238775]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25)
 
 [node name="Steve" parent="." unique_id=1076471443 node_paths=PackedStringArray("camera") instance=ExtResource("2_hbghi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28980923, 0.2785461, -2.0206666)
@@ -84,3 +91,21 @@ theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "Coin: 0 out of 6"
 script = ExtResource("10_gyffv")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=725193684]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=1437502480]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -220.0
+offset_right = -180.0
+offset_bottom = 40.0
+grow_horizontal = 0
+scale = Vector2(3, 3)
+
+[node name="TimeLabel" type="Label" parent="CanvasLayer/MarginContainer" unique_id=1476052214]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+label_settings = SubResource("LabelSettings_gyffv")
+horizontal_alignment = 2

@@ -1,12 +1,13 @@
 extends Node3D
 
 @export var possible_chunks: Array[PackedScene] = []
-@onready var chunk_spawn: Marker3D = $Chunk1Spawn
 
-func _ready():
+@onready var chunk_spawn: Marker3D = $Floor/Chunk1Spawn
+
+func _ready() -> void:
 	call_deferred("spawn_random_chunk")
 
-func spawn_random_chunk():
+func spawn_random_chunk() -> void:
 	if possible_chunks.is_empty():
 		push_error("No chunks assigned to possible_chunks.")
 		return
