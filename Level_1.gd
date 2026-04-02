@@ -5,6 +5,7 @@ extends Node3D
 
 func _ready():
 	call_deferred("spawn_random_chunk")
+	GameManager.coins = 0
 
 func spawn_random_chunk():
 	if possible_chunks.is_empty():
