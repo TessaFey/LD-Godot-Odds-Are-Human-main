@@ -2,27 +2,12 @@
 
 [ext_resource type="Script" uid="uid://6kfg0afeqlkp" path="res://chunk_3.gd" id="1_squub"]
 [ext_resource type="PackedScene" uid="uid://blqscwdc1kq4l" path="res://Chunk4.tscn" id="2_lddao"]
-[ext_resource type="Texture2D" uid="uid://cc7xp3ii0ls0o" path="res://Textures/FloorTextures/asphalt_03_disp_4k.png" id="3_62naf"]
 [ext_resource type="PackedScene" uid="uid://dir2tme0h5aeh" path="res://primitive_stairs.tscn" id="4_pk4lq"]
-[ext_resource type="Texture2D" uid="uid://dwxytydlu7n4b" path="res://Textures/FloorTextures/asphalt_03_nor_gl_4k.png" id="4_sx7x1"]
-[ext_resource type="Texture2D" uid="uid://bgruf6qm8r7fe" path="res://Textures/FloorTextures/asphalt_03_rough_4k.png" id="5_lgbub"]
 [ext_resource type="PackedScene" uid="uid://bp8nkgyfqyjse" path="res://coin.tscn" id="6_62naf"]
+[ext_resource type="PackedScene" uid="uid://cnlkkqexs7dbh" path="res://killzone.tscn" id="8_lddao"]
 [ext_resource type="Texture2D" uid="uid://cp8uoe2473ybv" path="res://Textures/WallTextures/plastered_wall_04_disp_4k.png" id="10_sx7x1"]
 [ext_resource type="Texture2D" uid="uid://dd3kw8rxk4bcg" path="res://Textures/WallTextures/plastered_wall_04_nor_gl_4k.png" id="11_lgbub"]
 [ext_resource type="Texture2D" uid="uid://dlkboek32qcei" path="res://Textures/WallTextures/plastered_wall_04_rough_4k.png" id="12_k1bf7"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_65or1"]
-albedo_color = Color(0.7593316, 2.8878452e-07, 0.37764055, 1)
-albedo_texture = ExtResource("3_62naf")
-roughness_texture = ExtResource("5_lgbub")
-normal_enabled = true
-normal_scale = 7.5
-normal_texture = ExtResource("4_sx7x1")
-uv1_scale = Vector3(5, 5, 5)
-
-[sub_resource type="BoxMesh" id="BoxMesh_3mpdw"]
-material = SubResource("StandardMaterial3D_65or1")
-size = Vector3(10, 0.5, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xer38"]
 size = Vector3(9.848511, 0.5, 10)
@@ -59,6 +44,8 @@ material = SubResource("StandardMaterial3D_lhbbi")
 [sub_resource type="BoxShape3D" id="BoxShape3D_lgbub"]
 size = Vector3(1, 1, 0.9971924)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_lddao"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6hxuc"]
 transparency = 1
 blend_mode = 3
@@ -74,10 +61,6 @@ possible_chunks = Array[PackedScene]([ExtResource("2_lddao")])
 
 [node name="Floor" type="StaticBody3D" parent="." unique_id=2050210158]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0011519194, -0.22761643, 0.016906738)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=184893382]
-transform = Transform3D(1.62, 0, 0, 0, 1.13, 0, 0, 0, 4, -0.0010000467, 0.07500005, 0)
-mesh = SubResource("BoxMesh_3mpdw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=1688134600]
 transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0, 0)
@@ -180,13 +163,23 @@ shape = SubResource("BoxShape3D_lgbub")
 [node name="wall2" type="StaticBody3D" parent="Obstacles" unique_id=355350136]
 transform = Transform3D(1, 0, 0, 0, 4.5, 0, 0, 0, 3, 0.035194635, -0.59292895, -0.28268766)
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/wall2" unique_id=2017958307]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5560465, -0.0014038086)
+shape = SubResource("BoxShape3D_lgbub")
+
 [node name="MeshInstance3D1" type="MeshInstance3D" parent="Obstacles/wall2" unique_id=654617175]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5566716, -0.009550095)
 mesh = SubResource("BoxMesh_xshmx")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/wall2" unique_id=2017958307]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5560465, -0.0014038086)
-shape = SubResource("BoxShape3D_lgbub")
+[node name="wall3" type="StaticBody3D" parent="Obstacles" unique_id=1201398993]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Obstacles/wall3" unique_id=278171452]
+transform = Transform3D(14.371868, 0, 0, 0, 6.9778852, 0, 0, 0, 11.990541, 0.03719163, 0.3093565, 13.1615715)
+mesh = SubResource("BoxMesh_xshmx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/wall3" unique_id=1389584178]
+transform = Transform3D(14.265985, 0, 0, 0, 7.599987, 0, 0, 0, 11.955665, 0, 0, 13.181291)
+shape = SubResource("BoxShape3D_lddao")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1077457086]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7988515, 3.954143, -4.751474)
@@ -222,3 +215,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.89476967, -0.5047822, 1.555
 light_energy = 3.0
 distance_fade_enabled = true
 distance_fade_length = 30.0
+
+[node name="Killzone" parent="." unique_id=725385547 instance=ExtResource("8_lddao")]
+transform = Transform3D(14.656909, 0, 0, 0, 5.7508, 0, 0, 0, 32.24665, -0.026651382, -0.59376955, 0.0906558)

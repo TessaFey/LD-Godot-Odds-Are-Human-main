@@ -10,10 +10,12 @@ extends CharacterBody3D
 @export var short_hop_cut: float = 0.5
 @export var enable_short_hop: bool = true
 
-# Look settings (horizontal only)
+# Look settings (horizontal and vertical)
 @export var mouse_sensitivity: float = 0.12
 @export var stick_sensitivity: float = 180.0
 @export var stick_deadzone: float = 0.15
+var camera_pitch: float = 0.0
+@export var max_look_angle: float = 80.0
 
 # Drag your level camera here
 @export var camera: Camera3D
@@ -57,7 +59,14 @@ func _ready():
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		#left and right
 		rotate_y(deg_to_rad(-event.relative.x * mouse_sensitivity))
+		
+		#up and down
+		camera_pitch -= event.relative.y * mouse_sensitivity
+		camera_pitch = clamp(camera_pitch, -max_look_angle, max_look_angle)
+		if camera != null:
+			camera.rotation_degrees.x = camera_pitch
 
 	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -84,10 +93,16 @@ func _play_anim(name: StringName) -> void:
 
 
 func _physics_process(delta):
-	# ---------------- RIGHT STICK LOOK (LEFT/RIGHT ONLY) ----------------
+	# ---------------- RIGHT STICK LOOK ----------------
 	var look_x := -Input.get_joy_axis(0, JOY_AXIS_RIGHT_X)
 	if abs(look_x) > stick_deadzone:
 		rotate_y(deg_to_rad(look_x * stick_sensitivity * delta))
+	var look_y := -Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)
+	if abs(look_y) > stick_deadzone:
+		camera_pitch += look_y * stick_sensitivity * delta
+		camera_pitch = clamp(camera_pitch, -max_look_angle, max_look_angle)
+		if camera != null:
+			camera.rotation_degrees.x = camera_pitch
 
 	# ---------------- MOVEMENT INPUT ----------------
 	var input_dir: Vector2 = Input.get_vector("left", "right", "forward", "back")
