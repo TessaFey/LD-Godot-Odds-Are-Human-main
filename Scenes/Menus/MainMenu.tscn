@@ -1,0 +1,180 @@
+[gd_scene format=3 uid="uid://c44fsu5cvbi0c"]
+
+[ext_resource type="FontFile" uid="uid://c8fq11d6kpiip" path="res://Fonts/Cartoonic Massive Regular.ttf" id="1_b42ut"]
+[ext_resource type="Script" uid="uid://bxfgb5ivicri4" path="res://Scripts/main_menu.gd" id="1_hqtmt"]
+[ext_resource type="FontFile" uid="uid://cj5l0d0oook5m" path="res://Fonts/Cartoonic Massive 3D.ttf" id="2_hqtmt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tfrft"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.69803923, 0.101960786, 0.101960786, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bc4mk"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 5
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[node name="MainMenu" type="Control" unique_id=201417284]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hqtmt")
+
+[node name="Panel" type="Panel" parent="." unique_id=338953468]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -960.0
+offset_top = -536.0
+offset_right = 961.0
+offset_bottom = 544.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tfrft")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=233183374]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -340.5
+offset_top = -148.0
+offset_right = 340.5
+offset_bottom = 188.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Start" type="Button" parent="VBoxContainer" unique_id=592132685]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_b42ut")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_bc4mk")
+text = "Start Game
+"
+
+[node name="Options" type="Button" parent="VBoxContainer" unique_id=975443107]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_b42ut")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_bc4mk")
+text = "Options"
+
+[node name="Exit" type="Button" parent="VBoxContainer" unique_id=247912485]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_b42ut")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_bc4mk")
+text = "Exit"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=207933892]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -461.0
+offset_top = -343.0
+offset_right = 461.0
+offset_bottom = -207.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.0017062029
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Odds" type="Label" parent="HBoxContainer" unique_id=158132910]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_hqtmt")
+theme_override_font_sizes/font_size = 175
+text = "Odds"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Odds" type="Label" parent="HBoxContainer/Odds" unique_id=916883277]
+layout_mode = 0
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_b42ut")
+theme_override_font_sizes/font_size = 175
+text = "Odds"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Odds2" type="Label" parent="HBoxContainer" unique_id=1323960]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_hqtmt")
+theme_override_font_sizes/font_size = 175
+text = "Are"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Odds" type="Label" parent="HBoxContainer/Odds2" unique_id=1638725127]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 269.0
+offset_bottom = 136.0
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_b42ut")
+theme_override_font_sizes/font_size = 175
+text = "Are"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Odds3" type="Label" parent="HBoxContainer" unique_id=536872094]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_hqtmt")
+theme_override_font_sizes/font_size = 175
+text = "Human"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Odds" type="Label" parent="HBoxContainer/Odds3" unique_id=1777747745]
+layout_mode = 0
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_b42ut")
+theme_override_font_sizes/font_size = 175
+text = "Human"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
