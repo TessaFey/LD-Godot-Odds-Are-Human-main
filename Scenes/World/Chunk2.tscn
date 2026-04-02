@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://h7j17hp114fj"]
 
-[ext_resource type="Script" uid="uid://bibww0r6qfi8a" path="res://chunk_2.gd" id="1_gt54n"]
-[ext_resource type="PackedScene" uid="uid://bcdq6t36vkuij" path="res://Arch.tscn" id="1_u7hbr"]
-[ext_resource type="PackedScene" uid="uid://c1h2ljih3p2wj" path="res://wall.tscn" id="2_noccj"]
-[ext_resource type="PackedScene" uid="uid://dir2tme0h5aeh" path="res://primitive_stairs.tscn" id="3_gt54n"]
-[ext_resource type="PackedScene" uid="uid://bet16x4wshi2p" path="res://Chunk3.tscn" id="3_xer38"]
-[ext_resource type="PackedScene" uid="uid://duf18d3ku7y8u" path="res://pillar_4.tscn" id="4_yxg4w"]
-[ext_resource type="PackedScene" uid="uid://bp8nkgyfqyjse" path="res://coin.tscn" id="5_noccj"]
+[ext_resource type="Script" uid="uid://bibww0r6qfi8a" path="res://Scripts/chunk_2.gd" id="1_gt54n"]
+[ext_resource type="PackedScene" uid="uid://bcdq6t36vkuij" path="res://Scenes/World/Arch.tscn" id="1_u7hbr"]
+[ext_resource type="PackedScene" uid="uid://c1h2ljih3p2wj" path="res://Scenes/World/wall.tscn" id="2_noccj"]
+[ext_resource type="PackedScene" uid="uid://dir2tme0h5aeh" path="res://Scenes/World/primitive_stairs.tscn" id="3_gt54n"]
+[ext_resource type="PackedScene" uid="uid://bet16x4wshi2p" path="res://Scenes/World/Chunk3.tscn" id="3_xer38"]
+[ext_resource type="PackedScene" uid="uid://duf18d3ku7y8u" path="res://Scenes/World/pillar_4.tscn" id="4_yxg4w"]
+[ext_resource type="PackedScene" uid="uid://bp8nkgyfqyjse" path="res://Scenes/Items/coin.tscn" id="5_noccj"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_3mpdw"]
 size = Vector3(10, 0.5, 10)

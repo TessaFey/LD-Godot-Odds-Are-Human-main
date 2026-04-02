@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://cmj6lb4md2mr6"]
 
-[ext_resource type="PackedScene" uid="uid://dcvjvuk4wmmb" path="res://block.tscn" id="1_3hls8"]
-[ext_resource type="Script" uid="uid://ckbep8us68ijn" path="res://Level_1.gd" id="1_bjebc"]
-[ext_resource type="PackedScene" uid="uid://i3d7c05eenck" path="res://Chunk1.tscn" id="2_5rr72"]
-[ext_resource type="PackedScene" uid="uid://dogbagg1eyn7b" path="res://steve.tscn" id="2_hbghi"]
-[ext_resource type="PackedScene" uid="uid://bp8nkgyfqyjse" path="res://coin.tscn" id="3_hn12h"]
-[ext_resource type="PackedScene" uid="uid://bdm1j3u4e7npk" path="res://sign.tscn" id="4_ihfcg"]
-[ext_resource type="PackedScene" uid="uid://c1h2ljih3p2wj" path="res://wall.tscn" id="5_rka8t"]
-[ext_resource type="PackedScene" uid="uid://5t7wdymvtp4n" path="res://barrier.tscn" id="6_5hph3"]
-[ext_resource type="PackedScene" uid="uid://bcdq6t36vkuij" path="res://Arch.tscn" id="7_j7kpp"]
-[ext_resource type="Script" uid="uid://cxlf4g67yeool" path="res://coin_counter.gd" id="10_gyffv"]
-[ext_resource type="Script" uid="uid://dwnl2bbiirga0" path="res://timer.gd" id="11_1pe0h"]
+[ext_resource type="Script" uid="uid://ckbep8us68ijn" path="res://Scripts/Level_1.gd" id="1_hwvp3"]
+[ext_resource type="PackedScene" uid="uid://i3d7c05eenck" path="res://Scenes/World/Chunk1.tscn" id="2_afv7b"]
+[ext_resource type="Script" uid="uid://dwnl2bbiirga0" path="res://Scripts/timer.gd" id="3_7r2dd"]
+[ext_resource type="PackedScene" uid="uid://dogbagg1eyn7b" path="res://Scenes/Player/steve.tscn" id="4_k2mw1"]
+[ext_resource type="PackedScene" uid="uid://dcvjvuk4wmmb" path="res://Scenes/World/block.tscn" id="5_tjl6l"]
+[ext_resource type="PackedScene" uid="uid://bp8nkgyfqyjse" path="res://Scenes/Items/coin.tscn" id="6_3628d"]
+[ext_resource type="PackedScene" uid="uid://bdm1j3u4e7npk" path="res://Scenes/World/sign.tscn" id="7_irw6p"]
+[ext_resource type="PackedScene" uid="uid://c1h2ljih3p2wj" path="res://Scenes/World/wall.tscn" id="8_31phq"]
+[ext_resource type="PackedScene" uid="uid://bcdq6t36vkuij" path="res://Scenes/World/Arch.tscn" id="9_7hll7"]
+[ext_resource type="PackedScene" uid="uid://5t7wdymvtp4n" path="res://Scenes/World/barrier.tscn" id="10_fayjm"]
+[ext_resource type="Script" uid="uid://cxlf4g67yeool" path="res://Scripts/coin_counter.gd" id="11_nojx8"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ilcil"]
 size = Vector3(10, 0.5, 10)
@@ -21,12 +21,12 @@ size = Vector3(10, 0.5, 10)
 [sub_resource type="LabelSettings" id="LabelSettings_gyffv"]
 
 [node name="Level1" type="Node3D" unique_id=872565340]
-script = ExtResource("1_bjebc")
-possible_chunks = Array[PackedScene]([ExtResource("2_5rr72")])
+script = ExtResource("1_hwvp3")
+possible_chunks = Array[PackedScene]([ExtResource("2_afv7b")])
 
 [node name="Timer" type="Timer" parent="." unique_id=932363926]
 autostart = true
-script = ExtResource("11_1pe0h")
+script = ExtResource("3_7r2dd")
 
 [node name="Floor" type="StaticBody3D" parent="." unique_id=706325752]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.253564, 0)
@@ -45,7 +45,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.253564, 25)
 transform = Transform3D(1, 0, 0, 0, -0.5186091, 0.8550115, 0, -0.8550115, -0.5186091, 0, 8.982597, -1.4138145)
 shadow_enabled = true
 
-[node name="Steve" parent="." unique_id=1076471443 node_paths=PackedStringArray("camera") instance=ExtResource("2_hbghi")]
+[node name="Steve" parent="." unique_id=1076471443 node_paths=PackedStringArray("camera") instance=ExtResource("4_k2mw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28980923, 0.2785461, -2.0206666)
 jump_velocity = 9.0
 rise_gravity_mult = 1.2
@@ -55,31 +55,31 @@ camera = NodePath("Camera3D")
 [node name="Camera3D" type="Camera3D" parent="Steve" unique_id=2106905048]
 transform = Transform3D(-0.99881804, 0.042634573, -0.023340847, 0.033488594, 0.95167625, 0.30527183, 0.035228077, 0.30412936, -0.95197916, -0.38921738, 2.6207132, -3.3018837)
 
-[node name="Block" parent="." unique_id=1241421418 instance=ExtResource("1_3hls8")]
+[node name="Block" parent="." unique_id=1241421418 instance=ExtResource("5_tjl6l")]
 transform = Transform3D(0.91356677, -0.31721473, -0.2545007, 0.4066888, 0.7125763, 0.5716985, 0, -0.6257873, 0.7799937, 3.1870818, 2.4165757, -0.23527563)
 
-[node name="Coin" parent="." unique_id=43698102 instance=ExtResource("3_hn12h")]
+[node name="Coin" parent="." unique_id=43698102 instance=ExtResource("6_3628d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9927716, 3.5763927, 15.899427)
 
-[node name="sign2" parent="." unique_id=1232386522 instance=ExtResource("4_ihfcg")]
+[node name="sign2" parent="." unique_id=1232386522 instance=ExtResource("7_irw6p")]
 transform = Transform3D(0.8004385, 0, -0.5994148, 0, 1, 0, 0.5994148, 0, 0.8004385, -2.2445717, 0.027272224, 2.9827757)
 
-[node name="barrier_4x1x4" parent="." unique_id=588132630 instance=ExtResource("5_rka8t")]
+[node name="barrier_4x1x4" parent="." unique_id=588132630 instance=ExtResource("8_31phq")]
 transform = Transform3D(-1.0751058e-07, 0, -0.803027, 0, 1, 0, 2.4595556, 0, -3.5101422e-08, 5, 0, 0)
 
-[node name="barrier_4x1x5" parent="." unique_id=153882260 instance=ExtResource("5_rka8t")]
+[node name="barrier_4x1x5" parent="." unique_id=153882260 instance=ExtResource("8_31phq")]
 transform = Transform3D(-1.0751058e-07, 0, -0.803027, 0, 1, 0, 2.4595556, 0, -3.5101422e-08, -5, 0, 0)
 
-[node name="arch_wide_red" parent="." unique_id=1996727198 instance=ExtResource("7_j7kpp")]
+[node name="arch_wide_red" parent="." unique_id=1996727198 instance=ExtResource("9_7hll7")]
 transform = Transform3D(1.6470613, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 
-[node name="barrier_4x1x1" parent="." unique_id=1075724838 instance=ExtResource("6_5hph3")]
+[node name="barrier_4x1x1" parent="." unique_id=1075724838 instance=ExtResource("10_fayjm")]
 transform = Transform3D(2.3992398, 0, 0, 0, 1, 0, 0, 0, 1, -0.0007221699, 0.014506049, -4.4472756)
 
-[node name="barrier_4x1x6" parent="." unique_id=1849826266 instance=ExtResource("5_rka8t")]
+[node name="barrier_4x1x6" parent="." unique_id=1849826266 instance=ExtResource("8_31phq")]
 transform = Transform3D(-0.6952919, 0, -8.073356e-08, 0, 1, 0, 6.0784345e-08, 0, -0.92348427, 4, 0, 5.034)
 
-[node name="barrier_4x1x7" parent="." unique_id=896164654 instance=ExtResource("5_rka8t")]
+[node name="barrier_4x1x7" parent="." unique_id=896164654 instance=ExtResource("8_31phq")]
 transform = Transform3D(-0.6952919, 0, -8.073356e-08, 0, 1, 0, 6.0784345e-08, 0, -0.92348427, -4, 0, 5.034)
 
 [node name="Label3D" type="Label3D" parent="." unique_id=1326709927]
@@ -90,7 +90,7 @@ offset_bottom = 169.0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "Coin: 0 out of 6"
-script = ExtResource("10_gyffv")
+script = ExtResource("11_nojx8")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=725193684]
 

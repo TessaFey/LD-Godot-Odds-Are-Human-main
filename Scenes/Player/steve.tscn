@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://dogbagg1eyn7b"]
 
-[ext_resource type="Script" uid="uid://dy0bws0v3ljap" path="res://steve.gd" id="1_bh3ft"]
+[ext_resource type="Script" uid="uid://dy0bws0v3ljap" path="res://Scripts/steve.gd" id="1_bh3ft"]
 [ext_resource type="Texture2D" uid="uid://bfk2egv3y1jw6" path="res://Characters/Mannequin_Medium_mannequin_texture.png" id="3_b44al"]
 [ext_resource type="Animation" uid="uid://cum2me876sy3r" path="res://Animations_Source/Animations/Jump_Full_Long.res" id="3_gb21x"]
 [ext_resource type="Animation" uid="uid://btu4q1xq1l3jj" path="res://Animations_Source/Animations/Jump_Full_Short.res" id="4_uyu0w"]
