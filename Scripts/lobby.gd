@@ -4,7 +4,7 @@ extends Node3D
 @onready var countdown_label = $CanvasLayer/CountdownLabel
 
 var counting_down = false
-var countdown = 5.0
+var countdown = 2.0
 
 func _ready() -> void:
 	countdown_label.visible = false
@@ -22,12 +22,12 @@ func _process(delta: float) -> void:
 func _on_enter(body: Node) -> void:
 	if body.name == "Steve":
 		counting_down = true
-		countdown = 5.0
+		countdown = 2.0
 		countdown_label.visible = true
-		countdown_label.text = "Starting in 5"
+		countdown_label.text = "Starting in 2 seconds..."
 
 func _on_exit(body: Node) -> void:
 	if body.name == "Steve":
 		counting_down = false
-		countdown = 5.0
+		countdown = 2.0
 		countdown_label.visible = false
