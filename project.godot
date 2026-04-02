@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Odds are human"
-run/main_scene="uid://cmj6lb4md2mr6"
+run/main_scene="uid://c44fsu5cvbi0c"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://3yrwng6y28fi"]
+[gd_scene format=3 uid="uid://c44fsu5cvbi0c"]
 
 [ext_resource type="FontFile" uid="uid://c8fq11d6kpiip" path="res://Fonts/Cartoonic Massive Regular.ttf" id="1_b42ut"]
-[ext_resource type="Script" uid="uid://bxfgb5ivicri4" path="res://Scripts/main_menu.gd" id="1_hqtmt"]
 [ext_resource type="FontFile" uid="uid://cj5l0d0oook5m" path="res://Fonts/Cartoonic Massive 3D.ttf" id="2_hqtmt"]
+[ext_resource type="Script" uid="uid://dcsqks6w41gqt" path="res://Scenes/Menus/start.gd" id="2_tfrft"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tfrft"]
 content_margin_left = 0.0
@@ -39,7 +39,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_hqtmt")
+script = ExtResource("2_tfrft")
 
 [node name="Panel" type="Panel" parent="." unique_id=338953468]
 layout_mode = 1
@@ -79,6 +79,7 @@ theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_bc4mk")
 text = "Start Game
 "
+script = ExtResource("2_tfrft")
 
 [node name="Options" type="Button" parent="VBoxContainer" unique_id=975443107]
 layout_mode = 2
