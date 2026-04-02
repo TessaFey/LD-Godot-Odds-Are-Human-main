@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://cbcgsn41cua0r"]
+
+[ext_resource type="Script" uid="uid://bg311fwu3x48m" path="res://Scripts/lobby.gd" id="1_k0wky"]
+[ext_resource type="Texture2D" uid="uid://cc7xp3ii0ls0o" path="res://Textures/FloorTextures/asphalt_03_disp_4k.png" id="1_sdq4w"]
+[ext_resource type="Texture2D" uid="uid://dwxytydlu7n4b" path="res://Textures/FloorTextures/asphalt_03_nor_gl_4k.png" id="2_k0wky"]
+[ext_resource type="Texture2D" uid="uid://bgruf6qm8r7fe" path="res://Textures/FloorTextures/asphalt_03_rough_4k.png" id="3_pjh5x"]
+[ext_resource type="PackedScene" uid="uid://dogbagg1eyn7b" path="res://steve.tscn" id="4_tc811"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_65or1"]
+albedo_color = Color(0.7593316, 2.8878452e-07, 0.37764055, 1)
+albedo_texture = ExtResource("1_sdq4w")
+roughness_texture = ExtResource("3_pjh5x")
+normal_enabled = true
+normal_scale = 7.5
+normal_texture = ExtResource("2_k0wky")
+uv1_scale = Vector3(5, 5, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_614sv"]
+material = SubResource("StandardMaterial3D_65or1")
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0jno3"]
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pjh5x"]
+size = Vector3(1, 1, 0.8204346)
+
+[node name="Lobby" type="Node3D" unique_id=164308359]
+script = ExtResource("1_k0wky")
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=819365907]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.253564, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=435520049]
+transform = Transform3D(1.7198846, 0, 0, 0, 1, 0, 0, 0, 1.7950281, -0.002175331, 0.042045593, 0.025629044)
+mesh = SubResource("BoxMesh_614sv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=1502153470]
+transform = Transform3D(1.7223794, 0, 0, 0, 1, 0, 0, 0, 1.7838216, 0, 0, 0)
+shape = SubResource("BoxShape3D_0jno3")
+
+[node name="Steve" parent="." unique_id=1076471443 node_paths=PackedStringArray("camera") instance=ExtResource("4_tc811")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28980923, 0.2785461, -2.0206666)
+jump_velocity = 9.0
+rise_gravity_mult = 1.2
+mouse_sensitivity = 0.42
+camera = NodePath("Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="Steve" unique_id=774047568]
+transform = Transform3D(-0.99881804, 0.042634573, -0.023340847, 0.033488594, 0.95167625, 0.30527183, 0.035228077, 0.30412936, -0.95197916, -0.38921738, 2.6207132, -3.3018837)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1699511478]
+transform = Transform3D(1, 0, 0, 0, -0.5186091, 0.8550115, 0, -0.8550115, -0.5186091, 0, 8.982597, -1.4138145)
+shadow_enabled = true
+
+[node name="PortalArea" type="Area3D" parent="." unique_id=690698383]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PortalArea" unique_id=1490437466]
+transform = Transform3D(17.163467, 0, 0, 0, 1, 0, 0, 0, 5.6756353, 0, -0.42085934, 6.6220055)
+shape = SubResource("BoxShape3D_pjh5x")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=608516378]
+
+[node name="CountdownLabel" type="Label" parent="CanvasLayer" unique_id=1948562730]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -173.5
+offset_right = 173.5
+offset_bottom = 45.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Starting in 5 seconds..."
