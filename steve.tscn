@@ -418,3 +418,7 @@ skeleton = NodePath("..")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Rig_Medium" unique_id=1013404351]
 root_node = NodePath("../..")
 libraries/Player = SubResource("AnimationLibrary_t4rfk")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=937137413]
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=610940564]

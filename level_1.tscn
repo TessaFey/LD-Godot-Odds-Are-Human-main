@@ -145,15 +145,11 @@ shadow_enabled = true
 [node name="Chunk1Spawn" type="Marker3D" parent="." unique_id=854238775]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25)
 
-[node name="Steve" parent="." unique_id=1076471443 node_paths=PackedStringArray("camera") instance=ExtResource("2_hbghi")]
+[node name="Steve" parent="." unique_id=1076471443 instance=ExtResource("2_hbghi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28980923, 0.2785461, -2.0206666)
 jump_velocity = 9.0
 rise_gravity_mult = 1.2
 mouse_sensitivity = 0.42
-camera = NodePath("Camera3D")
-
-[node name="Camera3D" type="Camera3D" parent="Steve" unique_id=2106905048]
-transform = Transform3D(-0.99881804, 0.042634573, -0.023340847, 0.033488594, 0.95167625, 0.30527183, 0.035228077, 0.30412936, -0.95197916, 0, 2.621, -3.302)
 
 [node name="Block" parent="." unique_id=1241421418 instance=ExtResource("1_3hls8")]
 transform = Transform3D(0.91356677, -0.31721473, -0.2545007, 0.4066888, 0.7125763, 0.5716985, 0, -0.6257873, 0.7799937, 3.1870818, 2.4165757, -0.23527563)
