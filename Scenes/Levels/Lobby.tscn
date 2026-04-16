@@ -41,12 +41,11 @@ mesh = SubResource("BoxMesh_614sv")
 transform = Transform3D(1.7223794, 0, 0, 0, 1, 0, 0, 0, 1.7838216, 0, 0, 0)
 shape = SubResource("BoxShape3D_0jno3")
 
-[node name="Steve" parent="." unique_id=1076471443 node_paths=PackedStringArray("camera") instance=ExtResource("4_tc811")]
+[node name="Steve" parent="." unique_id=1076471443 instance=ExtResource("4_tc811")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28980923, 0.2785461, -2.0206666)
 jump_velocity = 9.0
 rise_gravity_mult = 1.2
 mouse_sensitivity = 0.42
-camera = NodePath("Camera3D")
 
 [node name="Camera3D" type="Camera3D" parent="Steve" unique_id=774047568]
 transform = Transform3D(-0.99881804, 0.042634573, -0.023340847, 0.033488594, 0.95167625, 0.30527183, 0.035228077, 0.30412936, -0.95197916, -0.38921738, 2.6207132, -3.3018837)
@@ -82,3 +81,5 @@ mesh = SubResource("BoxMesh_k0wky")
 transform = Transform3D(1.0151786, 0, 0, 0, 2, 0, 0, 0, -1.1573837, 0, 0.09910512, 2.3533735)
 visible = false
 mesh = SubResource("BoxMesh_k0wky")
+
+[node name="RespawnPoint" type="Marker3D" parent="." unique_id=351703762 groups=["spawn_point"]]
