@@ -17,6 +17,20 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uv623"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.3083999, 0.3083999, 0.3083999, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 5
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
 [node name="MainMenu" type="Control" unique_id=201417284]
 layout_mode = 3
 anchors_preset = 8
@@ -65,7 +79,7 @@ theme_override_fonts/font = ExtResource("1_b42ut")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = ExtResource("3_tfrft")
 theme_override_styles/pressed = ExtResource("3_tfrft")
-theme_override_styles/hover = ExtResource("3_tfrft")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uv623")
 theme_override_styles/disabled = ExtResource("3_tfrft")
 theme_override_styles/focus = ExtResource("3_tfrft")
 text = "Start Game
@@ -79,7 +93,7 @@ theme_override_fonts/font = ExtResource("1_b42ut")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = ExtResource("3_tfrft")
 theme_override_styles/pressed = ExtResource("3_tfrft")
-theme_override_styles/hover = ExtResource("3_tfrft")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uv623")
 theme_override_styles/disabled = ExtResource("3_tfrft")
 theme_override_styles/focus = ExtResource("3_tfrft")
 text = "Options"
@@ -92,7 +106,7 @@ theme_override_fonts/font = ExtResource("1_b42ut")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = ExtResource("3_tfrft")
 theme_override_styles/pressed = ExtResource("3_tfrft")
-theme_override_styles/hover = ExtResource("3_tfrft")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uv623")
 theme_override_styles/disabled = ExtResource("3_tfrft")
 theme_override_styles/focus = ExtResource("3_tfrft")
 text = "Exit"

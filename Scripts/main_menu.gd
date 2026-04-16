@@ -9,23 +9,40 @@ var current_index: int = 0
 var using_keyboard := false
 var is_pressing := false
 
-# Controller stick control
 var stick_deadzone := 0.5
 var stick_ready := true
 
+var original_normal_styles: Dictionary = {}
+var hover_styles: Dictionary = {}
+var pressed_styles: Dictionary = {}
+
 
 func _ready() -> void:
+	print("MAIN MENU LOADED")
+
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	using_keyboard = false
+
 	buttons = [start_button, options_button, exit_button]
 
 	for i in range(buttons.size()):
-		var button = buttons[i]
+		var button := buttons[i]
+
+		if button == null:
+			push_error("A button path is wrong in main_menu.gd")
+			continue
+
 		button.focus_mode = Control.FOCUS_NONE
 		button.mouse_entered.connect(_on_button_mouse_entered.bind(i))
 
-	_set_current_button(0)
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		original_normal_styles[button] = button.get_theme_stylebox("normal")
+		hover_styles[button] = button.get_theme_stylebox("hover")
+		pressed_styles[button] = button.get_theme_stylebox("pressed")
 
-	print("Controllers connected:", Input.get_connected_joypads())
+	_apply_all_normal_styles()
+	_set_current_button(0)
+
+	print("Controllers connected: ", Input.get_connected_joypads())
 
 
 func _input(event: InputEvent) -> void:
@@ -34,50 +51,44 @@ func _input(event: InputEvent) -> void:
 	# =========================
 	if event is InputEventMouseMotion:
 		if using_keyboard:
-			using_keyboard = false
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			_use_mouse_input()
 		return
 
 	# =========================
 	# KEYBOARD
 	# =========================
 	if event is InputEventKey and event.pressed and not event.echo:
-		# Up
 		if event.keycode == KEY_W or event.keycode == KEY_UP:
-			using_keyboard = true
-			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+			_use_keyboard_input()
 			_move_selection(-1)
 			return
 
-		# Down
 		if event.keycode == KEY_S or event.keycode == KEY_DOWN:
-			using_keyboard = true
-			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+			_use_keyboard_input()
 			_move_selection(1)
 			return
 
-		# Accept
 		if event.keycode == KEY_ENTER or event.keycode == KEY_KP_ENTER or event.keycode == KEY_SPACE:
-			using_keyboard = true
-			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+			_use_keyboard_input()
 			_press_current_button()
 			return
 
-		# =========================
-		# DEBUG CONTROLLER SIMULATION
-		# =========================
+		# Debug controller simulation
 		if event.keycode == KEY_I:
 			print("DEBUG: DPAD UP")
+			_use_keyboard_input()
 			_move_selection(-1)
 			return
 
 		if event.keycode == KEY_K:
 			print("DEBUG: DPAD DOWN")
+			_use_keyboard_input()
 			_move_selection(1)
 			return
 
 		if event.keycode == KEY_J:
-			print("DEBUG: A BUTTON")
+			print("DEBUG: A BUTTON / CONFIRM")
+			_use_keyboard_input()
 			_press_current_button()
 			return
 
@@ -85,22 +96,18 @@ func _input(event: InputEvent) -> void:
 	# CONTROLLER BUTTONS
 	# =========================
 	if event is InputEventJoypadButton and event.pressed:
-		using_keyboard = true
-		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		_use_keyboard_input()
 
-		print("Controller button:", event.button_index)
+		print("Controller button: ", event.button_index)
 
-		# D-pad up
 		if event.button_index == JOY_BUTTON_DPAD_UP:
 			_move_selection(-1)
 			return
 
-		# D-pad down
 		if event.button_index == JOY_BUTTON_DPAD_DOWN:
 			_move_selection(1)
 			return
 
-		# Confirm (A / Cross) → use index 0 for compatibility
 		if event.button_index == 0:
 			_press_current_button()
 			return
@@ -109,10 +116,9 @@ func _input(event: InputEvent) -> void:
 	# CONTROLLER STICK
 	# =========================
 	if event is InputEventJoypadMotion and event.axis == JOY_AXIS_LEFT_Y:
-		using_keyboard = true
-		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		_use_keyboard_input()
 
-		print("Stick:", event.axis_value)
+		print("Stick Y: ", event.axis_value)
 
 		if stick_ready:
 			if event.axis_value > stick_deadzone:
@@ -126,6 +132,18 @@ func _input(event: InputEvent) -> void:
 		else:
 			if abs(event.axis_value) < 0.2:
 				stick_ready = true
+
+
+func _use_keyboard_input() -> void:
+	using_keyboard = true
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	_refresh_button_styles()
+
+
+func _use_mouse_input() -> void:
+	using_keyboard = false
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	_apply_all_normal_styles()
 
 
 # =========================
@@ -148,32 +166,45 @@ func _move_selection(direction: int) -> void:
 
 func _set_current_button(index: int) -> void:
 	current_index = index
+	_refresh_button_styles()
 
-	for i in range(buttons.size()):
-		var button = buttons[i]
 
-		if i == current_index:
-			_apply_selected_style(button)
-		else:
-			_apply_normal_style(button)
+func _refresh_button_styles() -> void:
+	_apply_all_normal_styles()
+
+	if using_keyboard:
+		var selected_button := buttons[current_index]
+		if selected_button != null:
+			_apply_selected_style(selected_button)
+
+
+func _apply_all_normal_styles() -> void:
+	for button in buttons:
+		if button == null:
+			continue
+		_apply_normal_style(button)
 
 
 # =========================
-# STYLES
+# STYLE LOGIC
 # =========================
 
 func _apply_normal_style(button: Button) -> void:
-	button.modulate = Color(0.72, 0.72, 0.72, 1.0)
+	if original_normal_styles.has(button) and original_normal_styles[button] != null:
+		button.add_theme_stylebox_override("normal", original_normal_styles[button])
 	button.scale = Vector2(1.0, 1.0)
 
 
 func _apply_selected_style(button: Button) -> void:
-	button.modulate = Color(1.0, 1.0, 1.0, 1.0)
+	# Use your existing Hover theme override as keyboard/controller selection
+	if hover_styles.has(button) and hover_styles[button] != null:
+		button.add_theme_stylebox_override("normal", hover_styles[button])
 	button.scale = Vector2(1.03, 1.03)
 
 
 func _apply_pressed_style(button: Button) -> void:
-	button.modulate = Color(0.9, 0.9, 0.9, 1.0)
+	if pressed_styles.has(button) and pressed_styles[button] != null:
+		button.add_theme_stylebox_override("normal", pressed_styles[button])
 	button.scale = Vector2(0.97, 0.97)
 
 
@@ -192,8 +223,8 @@ func _press_current_button() -> void:
 
 	await get_tree().create_timer(0.08).timeout
 
-	_set_current_button(current_index)
 	is_pressing = false
+	_refresh_button_styles()
 
 	match current_index:
 		0:
@@ -212,9 +243,10 @@ func _on_button_mouse_entered(index: int) -> void:
 	if is_pressing:
 		return
 
-	using_keyboard = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	_set_current_button(index)
+	current_index = index
+
+	if using_keyboard:
+		_use_mouse_input()
 
 
 # =========================
@@ -223,6 +255,7 @@ func _on_button_mouse_entered(index: int) -> void:
 
 func _on_start_pressed() -> void:
 	print("START")
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	get_tree().change_scene_to_file("res://Scenes/Levels/Lobby.tscn")
 
 
