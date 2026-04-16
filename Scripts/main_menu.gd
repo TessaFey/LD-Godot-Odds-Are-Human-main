@@ -10,8 +10,14 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+@onready var ip_input = $VBoxContainer/HBoxJoin/IPAddress
 
-func _on_start_pressed() -> void:
+func _on_host_pressed() -> void:
+	MultiplayerManager.host_game()
+	get_tree().change_scene_to_file("res://Scenes/Levels/Lobby.tscn")
+
+func _on_join_pressed() -> void:
+	MultiplayerManager.join_game(ip_input.text)
 	get_tree().change_scene_to_file("res://Scenes/Levels/Lobby.tscn")
 
 
