@@ -78,3 +78,5 @@ mesh = SubResource("BoxMesh_k0wky")
 transform = Transform3D(1.0151786, 0, 0, 0, 2, 0, 0, 0, -1.1573837, 0, 0.09910512, 2.3533735)
 visible = false
 mesh = SubResource("BoxMesh_k0wky")
+
+[node name="RespawnPoint" type="Marker3D" parent="." unique_id=351703762 groups=["spawn_point"]]

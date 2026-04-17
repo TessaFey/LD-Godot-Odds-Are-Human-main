@@ -1,0 +1,195 @@
+[gd_scene format=3 uid="uid://4c4h43fdu3w6"]
+
+[ext_resource type="Script" uid="uid://3quhpqv4atdr" path="res://Scripts/esc_menu.gd" id="1_dtk4d"]
+[ext_resource type="FontFile" uid="uid://c8fq11d6kpiip" path="res://Fonts/Cartoonic Massive Regular.ttf" id="1_n7iyd"]
+[ext_resource type="StyleBox" uid="uid://bkbq1dlir4fcj" path="res://new_style_box_flat.tres" id="2_dtk4d"]
+[ext_resource type="FontFile" uid="uid://cj5l0d0oook5m" path="res://Fonts/Cartoonic Massive 3D.ttf" id="4_4oa4n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4oa4n"]
+bg_color = Color(0.69803923, 0.101960786, 0.101960786, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dtk4d"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="EscMenu" type="CanvasLayer" unique_id=204801001]
+process_mode = 3
+script = ExtResource("1_dtk4d")
+
+[node name="Panel" type="Panel" parent="." unique_id=555389338]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -961.0
+offset_top = -541.0
+offset_right = 961.0
+offset_bottom = 541.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1362326436]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -340.5
+offset_top = -148.0
+offset_right = 340.5
+offset_bottom = 188.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Resume" type="Button" parent="Panel/VBoxContainer" unique_id=191178358]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_n7iyd")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = ExtResource("2_dtk4d")
+theme_override_styles/pressed = ExtResource("2_dtk4d")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4oa4n")
+theme_override_styles/disabled = ExtResource("2_dtk4d")
+theme_override_styles/focus = ExtResource("2_dtk4d")
+text = "Reume"
+
+[node name="Reset" type="Button" parent="Panel/VBoxContainer" unique_id=1188724013]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_n7iyd")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = ExtResource("2_dtk4d")
+theme_override_styles/pressed = ExtResource("2_dtk4d")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4oa4n")
+theme_override_styles/disabled = ExtResource("2_dtk4d")
+theme_override_styles/focus = ExtResource("2_dtk4d")
+text = "Reset"
+
+[node name="Quit" type="Button" parent="Panel/VBoxContainer" unique_id=1220908176]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_n7iyd")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = ExtResource("2_dtk4d")
+theme_override_styles/pressed = ExtResource("2_dtk4d")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4oa4n")
+theme_override_styles/disabled = ExtResource("2_dtk4d")
+theme_override_styles/focus = ExtResource("2_dtk4d")
+text = "Quit"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel" unique_id=1353946388]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -461.0
+offset_top = -343.0
+offset_right = 461.0
+offset_bottom = -207.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.0017062029
+scale = Vector2(0.9935644, 0.9999883)
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Odds" type="Label" parent="Panel/HBoxContainer" unique_id=670062825]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_4oa4n")
+theme_override_font_sizes/font_size = 175
+text = "An"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Odds" type="Label" parent="Panel/HBoxContainer/Odds" unique_id=1723503479]
+layout_mode = 0
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_n7iyd")
+theme_override_font_sizes/font_size = 175
+text = "An"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Odds2" type="Label" parent="Panel/HBoxContainer" unique_id=2104853645]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_4oa4n")
+theme_override_font_sizes/font_size = 175
+text = "Odd"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Odds" type="Label" parent="Panel/HBoxContainer/Odds2" unique_id=198678910]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 269.0
+offset_bottom = 136.0
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_n7iyd")
+theme_override_font_sizes/font_size = 175
+text = "Odd"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Odds3" type="Label" parent="Panel/HBoxContainer" unique_id=1393411010]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_4oa4n")
+theme_override_font_sizes/font_size = 175
+text = "Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Odds" type="Label" parent="Panel/HBoxContainer/Odds3" unique_id=819089577]
+layout_mode = 0
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_n7iyd")
+theme_override_font_sizes/font_size = 175
+text = "Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HintBox" type="Panel" parent="." unique_id=1014992638]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 152.0
+offset_bottom = 41.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dtk4d")
+
+[node name="HintLabel" type="Label" parent="HintBox" unique_id=826460653]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_right = 149.0
+offset_bottom = 11.5
+grow_vertical = 2
+text = "Press Esc For Menu"
+
+[connection signal="pressed" from="Panel/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Reset" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

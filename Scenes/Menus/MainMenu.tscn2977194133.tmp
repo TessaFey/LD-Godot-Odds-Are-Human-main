@@ -3,7 +3,6 @@
 [ext_resource type="FontFile" uid="uid://c8fq11d6kpiip" path="res://Fonts/Cartoonic Massive Regular.ttf" id="1_b42ut"]
 [ext_resource type="Script" uid="uid://bxfgb5ivicri4" path="res://Scripts/main_menu.gd" id="1_hqtmt"]
 [ext_resource type="FontFile" uid="uid://cj5l0d0oook5m" path="res://Fonts/Cartoonic Massive 3D.ttf" id="2_hqtmt"]
-[ext_resource type="StyleBox" uid="uid://bkbq1dlir4fcj" path="res://new_style_box_flat.tres" id="3_tfrft"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tfrft"]
 content_margin_left = 0.0
@@ -17,12 +16,12 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uv623"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bc4mk"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
-bg_color = Color(0.3083999, 0.3083999, 0.3083999, 1)
+bg_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
@@ -71,36 +70,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="Host" type="Button" parent="VBoxContainer" unique_id=592132685]
+[node name="Start" type="Button" parent="VBoxContainer" unique_id=592132685]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_b42ut")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_bc4mk")
-text = "Host Game"
-
-[node name="HBoxJoin" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Join" type="Button" parent="VBoxContainer/HBoxJoin"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("1_b42ut")
-theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = SubResource("StyleBoxFlat_bc4mk")
-text = "Join Game"
-
-[node name="IPAddress" type="LineEdit" parent="VBoxContainer/HBoxJoin"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("1_b42ut")
-theme_override_font_sizes/font_size = 35
-text = "127.0.0.1"
-placeholder_text = "IP Address"
-alignment = 1
+text = "Start Game
+"
 
 [node name="Options" type="Button" parent="VBoxContainer" unique_id=975443107]
 layout_mode = 2
@@ -108,11 +86,7 @@ size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_b42ut")
 theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = ExtResource("3_tfrft")
-theme_override_styles/pressed = ExtResource("3_tfrft")
-theme_override_styles/hover = SubResource("StyleBoxFlat_uv623")
-theme_override_styles/disabled = ExtResource("3_tfrft")
-theme_override_styles/focus = ExtResource("3_tfrft")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bc4mk")
 text = "Options"
 
 [node name="Exit" type="Button" parent="VBoxContainer" unique_id=247912485]
@@ -121,11 +95,7 @@ size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_b42ut")
 theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = ExtResource("3_tfrft")
-theme_override_styles/pressed = ExtResource("3_tfrft")
-theme_override_styles/hover = SubResource("StyleBoxFlat_uv623")
-theme_override_styles/disabled = ExtResource("3_tfrft")
-theme_override_styles/focus = ExtResource("3_tfrft")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bc4mk")
 text = "Exit"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=207933892]
@@ -205,7 +175,6 @@ text = "Human"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="VBoxContainer/Host" to="." method="_on_host_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxJoin/Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
