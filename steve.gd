@@ -46,41 +46,8 @@ var camera_yaw: float = 0.0
 
 func _ready():
 	add_to_group("player")
-	
-	var sync = MultiplayerSynchronizer.new()
-	sync.name = "MultiplayerSynchronizer"
-	var config = SceneReplicationConfig.new()
-	config.add_property(NodePath(".:global_transform"))
-	config.add_property(NodePath(".:velocity"))
-	config.add_property(NodePath("Rig_Medium/AnimationPlayer:current_animation"))
-	sync.replication_config = config
-	add_child(sync)
-	
-	if name.is_valid_int():
-		set_multiplayer_authority(name.to_int())
-	
-	if is_multiplayer_authority():
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		if camera != null:
-			camera.current = true
-	else:
-		if camera != null:
-			camera.current = false
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-	if camera == null:
-		camera = Camera3D.new()
-		# Original camera transform from the level scene
-		var x_axis = Vector3(-0.99881804, 0.033488594, 0.035228077)
-		var y_axis = Vector3(0.042634573, 0.95167625, 0.30412936)
-		var z_axis = Vector3(-0.023340847, 0.30527183, -0.95197916)
-		var origin = Vector3(-0.38921738, 2.6207132, -3.3018837)
-		camera.transform = Transform3D(Basis(x_axis, y_axis, z_axis), origin)
-		add_child(camera)
-		
-		if is_multiplayer_authority():
-			camera.current = true
-		else:
-			camera.current = false
 	spring_arm.spring_length = camera_distance
 	spring_arm.position.y = camera_height
 	spring_arm.set_as_top_level(true)
@@ -90,8 +57,10 @@ func _ready():
 
 
 func _unhandled_input(event):
-	if not is_multiplayer_authority(): return
-	
+	# Block player/gameplay input while ESC menu is open
+	if GameManager.menu_open:
+		return
+
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		camera_yaw -= event.relative.x * mouse_sensitivity
 		camera_pitch -= event.relative.y * mouse_sensitivity
@@ -114,10 +83,21 @@ func _play_anim(name: StringName) -> void:
 
 
 func _physics_process(delta):
-	if not is_multiplayer_authority(): return
-	
-	# ---------------- RIGHT STICK LOOK ----------------
-	var look_x := -Input.get_joy_axis(0, JOY_AXIS_RIGHT_X)
+	# Keep world running, but lock the player while menu is open
+	if GameManager.menu_open:
+		velocity.x = 0.0
+		velocity.z = 0.0
+		air_dash_timer = 0.0
+		move_and_slide()
+
+		if not is_on_floor():
+			_play_anim(&"Player/Jump_Full_Long")
+		else:
+			_play_anim(&"Player/T-Pose")
+		return
+
+	# ---------------- CAMERA ORBIT (spring arm) ----------------
+	var look_x := Input.get_joy_axis(0, JOY_AXIS_RIGHT_X)
 	if abs(look_x) > stick_deadzone:
 		camera_yaw -= look_x * stick_sensitivity * delta
 

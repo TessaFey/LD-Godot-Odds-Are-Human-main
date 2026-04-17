@@ -41,11 +41,14 @@ mesh = SubResource("BoxMesh_614sv")
 transform = Transform3D(1.7223794, 0, 0, 0, 1, 0, 0, 0, 1.7838216, 0, 0, 0)
 shape = SubResource("BoxShape3D_0jno3")
 
-[node name="Players" type="Node3D" parent="." unique_id=1076471444]
+[node name="Steve" parent="." unique_id=1076471443 instance=ExtResource("4_tc811")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28980923, 0.2785461, -2.0206666)
+jump_velocity = 9.0
+rise_gravity_mult = 1.2
+mouse_sensitivity = 0.42
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1076471445]
-_spawnable_scenes = PackedStringArray("res://steve.tscn")
-spawn_path = NodePath("../Players")
+[node name="Camera3D" type="Camera3D" parent="Steve" unique_id=774047568]
+transform = Transform3D(-0.99881804, 0.042634573, -0.023340847, 0.033488594, 0.95167625, 0.30527183, 0.035228077, 0.30412936, -0.95197916, -0.38921738, 2.6207132, -3.3018837)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1699511478]
 transform = Transform3D(1, 0, 0, 0, -0.5186091, 0.8550115, 0, -0.8550115, -0.5186091, 0, 8.982597, -1.4138145)

@@ -3,17 +3,9 @@ extends Node3D
 @export var possible_chunks: Array[PackedScene] = []
 @onready var chunk_spawn: Marker3D = $Chunk1Spawn
 
-@onready var players_node = $Players
-var steve_scene = preload("res://steve.tscn")
-
 func _ready():
 	call_deferred("spawn_random_chunk")
-	if multiplayer.is_server():
-		for peer_id in MultiplayerManager.players:
-			var player = steve_scene.instantiate()
-			player.name = str(peer_id)
-			player.position = Vector3(0.3, 0.3, -2.0)
-			players_node.add_child(player)
+	GameManager.coins = 0
 
 func spawn_random_chunk():
 	if possible_chunks.is_empty():
